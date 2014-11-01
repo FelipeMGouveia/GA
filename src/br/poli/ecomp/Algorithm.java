@@ -9,12 +9,12 @@ import br.poli.ecomp.mutation.Mutation;
 
 public class Algorithm 
 {
-	//Inicializar populaÃ§Ã£o
+	//Inicializar população
 	//=====================
-	//ValidaÃ§Ã£o
-	//SeleÃ§Ã£o
+	//Validação
+	//Seleção
 	//Cruzamento
-	//MutaÃ§Ã£o
+	//Mutação
 	
 	private List<Individual> population;
 	private int featureLimit;
@@ -30,7 +30,7 @@ public class Algorithm
 	
 	private int crossoverIndividuals;
 	/**
-	 * Indica que ocorreu uma evoluÃ§Ã£o na Ãºltima validaÃ§Ã£o do algoritmo.
+	 * Indica que ocorreu uma evolução na última validação do algoritmo.
 	 */
 	private boolean evolution;
 	private int epochsWithoutEvolutionLimit;

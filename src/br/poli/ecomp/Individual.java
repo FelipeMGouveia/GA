@@ -56,8 +56,8 @@ public class Individual implements Comparable<Individual>
 	{
 		Double to = new Double(output);
 		Double oo = new Double(o.getOutput());
-		return to.compareTo(oo); //Minimos primeiros
-		//return oo.compareTo(to); //MÃ¡ximos primeiros
+		return to.compareTo(oo); //Mínimos primeiros
+		//return oo.compareTo(to); //Máximos primeiros
 	}
 	
 	

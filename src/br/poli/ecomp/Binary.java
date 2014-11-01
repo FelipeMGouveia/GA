@@ -2,7 +2,7 @@ package br.poli.ecomp;
 
 public class Binary 
 {
-	//LSB na posiÃ§Ã£o 0
+	//LSB na posição 0
 	private int[] binary;
 	private int limit;
 	
