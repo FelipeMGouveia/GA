@@ -10,4 +10,9 @@ public interface Problem
 	 * @return saída obtida.
 	 */
 	public double run(List<Integer> input);
+	
+	/**
+	 * @return Quantidade de dimensões do problema.
+	 */
+	public int getDimensions();
 }

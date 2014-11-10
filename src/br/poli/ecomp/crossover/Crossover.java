@@ -6,5 +6,5 @@ import br.poli.ecomp.Individual;
 
 public interface Crossover 
 {
-	void crossover(List<Individual> population, int crossoverIndividuals);
+	void crossover(List<Individual> population);
 }

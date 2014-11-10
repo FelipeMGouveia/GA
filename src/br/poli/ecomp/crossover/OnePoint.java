@@ -8,11 +8,13 @@ import br.poli.ecomp.Individual;
 
 public class OnePoint implements Crossover 
 {
+	private int crossoverIndividuals;
 	private int point;
 	private Random rand;
 	
-	public OnePoint(int point, Random rand)
+	public OnePoint(int point, int crossoverIndividuals, Random rand)
 	{
+		this.crossoverIndividuals = crossoverIndividuals;
 		this.point = point;
 		this.rand = rand;
 	}
@@ -26,7 +28,7 @@ public class OnePoint implements Crossover
 	}
 
 	@Override
-	public void crossover(List<Individual> population, int crossoverIndividuals) 
+	public void crossover(List<Individual> population) 
 	{
 		int size = population.get(0).getData().size();// * population.get(0).getBitDepth();
 		for(int i = 0; i < crossoverIndividuals / 2; i++)

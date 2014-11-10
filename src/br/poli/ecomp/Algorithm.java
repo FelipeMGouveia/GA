@@ -6,6 +6,7 @@ import java.util.Random;
 
 import br.poli.ecomp.crossover.Crossover;
 import br.poli.ecomp.mutation.Mutation;
+import br.poli.ecomp.selection.Selection;
 
 public class Algorithm 
 {
@@ -22,39 +23,35 @@ public class Algorithm
 	private Problem problem;
 	private Individual best;
 	
-	private double selectionRate;
-	
 	private Crossover crossoverOperator;
 	
 	private Mutation mutationOperator;
 	
-	private int crossoverIndividuals;
 	/**
 	 * Indica que ocorreu uma evolução na última validação do algoritmo.
 	 */
 	private boolean evolution;
 	private int epochsWithoutEvolutionLimit;
+	private Selection selectionOperator;
 	
-	public Algorithm(int populationSize, int dataSize, int bitDepth, Problem problem, double selectionRate, int epochsWithoutEvolutionLimit, Crossover crossoverOperator, Mutation mutationOperator, int crossoverIndividuals, Random rand)
+	public Algorithm(int populationSize, int bitDepth, Problem problem, int epochsWithoutEvolutionLimit, Selection selectionOperator, Crossover crossoverOperator, Mutation mutationOperator, Random rand)
 	{
 		this.population = new ArrayList<Individual>(populationSize);
 		for(int i = 0; i < populationSize; i++)
 		{
-			this.population.add(new Individual(dataSize, bitDepth));
+			this.population.add(new Individual(problem.getDimensions(), bitDepth));
 		}
 		this.rand = rand;
 		this.featureLimit = (int) Math.pow(2, bitDepth);
-		this.selectionRate = selectionRate;
-		this.best = new Individual(dataSize, bitDepth);
+		this.best = new Individual(problem.getDimensions(), bitDepth);
 		this.best.setOutput(Double.MAX_VALUE);
 		this.evolution = false;
 		this.epochsWithoutEvolutionLimit = epochsWithoutEvolutionLimit;
+		this.selectionOperator = selectionOperator;
 		this.crossoverOperator = crossoverOperator;
 		this.mutationOperator = mutationOperator;
-		
+
 		this.problem = problem;
-		
-		this.crossoverIndividuals = crossoverIndividuals;
 	}
 	
 	public void init()
@@ -95,13 +92,12 @@ public class Algorithm
 	
 	public void select()
 	{
-		population.sort(null);
-		population = population.subList(0, (int) (population.size() * selectionRate));
+		selectionOperator.select(population);
 	}
 	
 	public void crossover()
 	{
-		crossoverOperator.crossover(population, crossoverIndividuals);
+		crossoverOperator.crossover(population);
 	}
 	
 	public void mutation()
